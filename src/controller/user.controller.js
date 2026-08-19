@@ -81,10 +81,16 @@ if(!createduser){
     throw new ApiError(500,"something went wrong while registering a user")
 }
 
-return res.status(201).json(
-    new ApiResponse(200, createduser,"user enter successfully")
-)
+    return res.status(201).json(
+        new ApiResponse(200, createduser,"user enter successfully")
+    )
  })
 
+const getUsers = asynchandler(async(req,res)=>{
+    const users = await user.find({}).select("-password -referenceToken")
+    return res.status(200).json(
+        new ApiResponse(200, users, "users fetched successfully")
+    )
+})
 
-export { registerUser }  
+export { registerUser, getUsers }  

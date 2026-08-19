@@ -1,4 +1,6 @@
 
+import dns from "dns"
+dns.setServers(["1.1.1.1","8.8.8.8"])
 import connectDB from "./database/databaseco.js";
 import dotenv from "dotenv";
 import { app } from "./app.js";
